@@ -119,4 +119,5 @@ if(EXISTS "${CMAKE_ROOT}/Modules/CPack.cmake")
 
   # include CPack model once all variables are set
   include(CPack)
+  include(xpsolpkg OPTIONAL) # create solaris pkg
 endif()
