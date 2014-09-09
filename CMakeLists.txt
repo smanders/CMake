@@ -541,6 +541,7 @@ if(NOT CMake_TEST_EXTERNAL_CMAKE)
 
   # include special compile flags for some compilers
   include(CompileFlags.cmake)
+  include(flags OPTIONAL)
 
   # no clue why we are testing for this here
   include(CheckSymbolExists)
