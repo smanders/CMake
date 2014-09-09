@@ -84,6 +84,7 @@ endif()
 if(NOT CMake_TEST_EXTERNAL_CMAKE)
   # include special compile flags for some compilers
   include(CompileFlags.cmake)
+  include(flags OPTIONAL)
 
   # check for available C++ features
   include(${CMake_SOURCE_DIR}/Source/Checks/cm_cxx_features.cmake)
