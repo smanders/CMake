@@ -449,11 +449,15 @@ if(CMAKE_USE_SECTRANSP)
 endif()
 
 if(CMAKE_USE_OPENSSL)
-  find_package(OpenSSL)
-  if(NOT OpenSSL_FOUND)
-    message(FATAL_ERROR
-      "Could not find OpenSSL. Install an OpenSSL development package or "
-      "configure CMake with -DCMAKE_USE_OPENSSL=OFF to build without OpenSSL.")
+  if(CMAKE_USE_OPENSSL_MODULE_PATH)
+    find_package(usexp-OpenSSL REQUIRED PATHS ${CMAKE_MODULE_PATH} NO_DEFAULT_PATH)
+  else()
+    find_package(OpenSSL)
+    if(NOT OpenSSL_FOUND)
+      message(FATAL_ERROR
+        "Could not find OpenSSL. Install an OpenSSL development package or "
+        "configure CMake with -DCMAKE_USE_OPENSSL=OFF to build without OpenSSL.")
+    endif()
   endif()
   set(SSL_ENABLED ON)
   set(USE_OPENSSL ON)
