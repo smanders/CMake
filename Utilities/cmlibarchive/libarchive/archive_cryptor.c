@@ -316,7 +316,11 @@ aes_ctr_init(archive_crypto_ctx *ctx, const uint8_t *key, size_t key_len)
 	memcpy(ctx->key, key, key_len);
 	memset(ctx->nonce, 0, sizeof(ctx->nonce));
 	ctx->encr_pos = AES_BLOCK_SIZE;
+#if OPENSSL_API_COMPAT < 0x10100000L
 	EVP_CIPHER_CTX_init(ctx->ctx);
+#else
+	EVP_CIPHER_CTX_reset(ctx->ctx);
+#endif
 	return 0;
 }
 
